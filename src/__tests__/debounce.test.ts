@@ -27,6 +27,16 @@ describe('debounce', () => {
         // Passat aquest temps s'espera que la funció sigui cridadd només una vegada
         expect(func).toHaveBeenCalledTimes(1)
 
+        funcProva()
+        funcProva()
+        funcProva()
+
+        // Cridant encara la funció debounce esperem que la mock-function no s'hagi executat perquè no ha passat prou temps
+        expect(func).toHaveBeenCalledTimes(1)
+
+        jest.advanceTimersByTime(1000)
+        expect(func).toHaveBeenCalledTimes(2)
+
 
     })
 
